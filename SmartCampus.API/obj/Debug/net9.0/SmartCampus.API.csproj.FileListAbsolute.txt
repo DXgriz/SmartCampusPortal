@@ -78,6 +78,7 @@ G:\MyProjects\SFG Project\SmartCampusPortal\SmartCampus.API\obj\Debug\net9.0\Sma
 G:\MyProjects\SFG Project\SmartCampusPortal\SmartCampus.API\obj\Debug\net9.0\SmartCampus.API.csproj.CoreCompileInputs.cache
 G:\MyProjects\SFG Project\SmartCampusPortal\SmartCampus.API\obj\Debug\net9.0\SmartCampus.API.MvcApplicationPartsAssemblyInfo.cs
 G:\MyProjects\SFG Project\SmartCampusPortal\SmartCampus.API\obj\Debug\net9.0\SmartCampus.API.MvcApplicationPartsAssemblyInfo.cache
+G:\MyProjects\SFG Project\SmartCampusPortal\SmartCampus.API\obj\Debug\net9.0\SmartCampus.API.sourcelink.json
 G:\MyProjects\SFG Project\SmartCampusPortal\SmartCampus.API\obj\Debug\net9.0\scopedcss\bundle\SmartCampus.API.styles.css
 G:\MyProjects\SFG Project\SmartCampusPortal\SmartCampus.API\obj\Debug\net9.0\staticwebassets.build.json
 G:\MyProjects\SFG Project\SmartCampusPortal\SmartCampus.API\obj\Debug\net9.0\staticwebassets.development.json
