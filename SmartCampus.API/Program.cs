@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using SmartCampus.API.Data;
 using System.Text;
+using static System.Net.WebRequestMethods;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddControllers();
 
 // Add Swagger with JWT support
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
@@ -74,36 +76,44 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddAuthorization();
 
 // Add scoped services or repositories here if needed
-// e.g., builder.Services.AddScoped<IUserService, UserService>();
+// e.g.,builder.Services.AddScoped<IUserService, UserService>();
 
+
+// Add HTTPS redirection middleware
+builder.Services.AddHttpsRedirection(options =>
+{
+    options.HttpsPort = 7248;
+
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
-{
-    app.UseDeveloperExceptionPage();
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
     {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "SmartCampus API V1");
-    });
-}
-else
-{
-    app.UseExceptionHandler("/Error");
-    app.UseHsts();
-}
+        app.UseDeveloperExceptionPage();
+        app.UseSwagger();
+        app.UseSwaggerUI(c =>
+        {
+            c.SwaggerEndpoint("/swagger/v1/swagger.json", "SmartCampus API V1");
+        });
+    }
+    else
+    {
+        app.UseExceptionHandler("Home/Error");
+        app.UseHsts();
+    }
+
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
+    app.UseStaticFiles();
 
-app.UseRouting();
+    app.UseRouting();
 
-app.UseCors("AllowFrontend");
+    app.UseCors("AllowFrontend");
 
-app.UseAuthentication();
-app.UseAuthorization();
+    app.UseAuthentication();
+    app.UseAuthorization();
 
-app.MapControllers();
+    app.MapControllers();
 
-app.Run();
+    app.Run();

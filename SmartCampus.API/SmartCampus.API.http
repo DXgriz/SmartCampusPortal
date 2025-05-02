@@ -1,6 +1,6 @@
-@SmartCampus.API_HostAddress = http://localhost:5194
+@SmartCampus.API_HostAddress = https://localhost:7248
 
-GET {{SmartCampus.API_HostAddress}}/weatherforecast/
+
+# ### GET all bookings
+GET {{SmartCampus.API_HostAddress}}/api/Bookings/
 Accept: application/json
-
-###

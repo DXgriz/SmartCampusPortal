@@ -18,11 +18,14 @@ namespace SmartCampus.API.Data
         public DbSet<Issue> Issues { get; set; }
         public DbSet<Announcement> Announcements { get; set; }
         public DbSet<Notification> Notifications { get; set; }
-        public DbSet<UserRole> UserRoles { get; set; }
+        new public DbSet<UserRole> UserRoles { get; set; }
+        //override public DbSet<IdentityUserRole<int>> UserRoles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
+            builder.Entity<UserRole>().ToTable("UserRole", "dbo");
 
             // Seed Roles (Important for setting up roles)
             builder.Entity<UserRole>().HasData(
@@ -46,7 +49,7 @@ namespace SmartCampus.API.Data
             //     .UsingEntity(j => j.ToTable("TimetableStudent"));  // You don't need this join table
 
             //Set Schema
-            builder.HasDefaultSchema("SmartCampus");
+            //builder.HasDefaultSchema("SmartCampus");
         }
     }
 }
