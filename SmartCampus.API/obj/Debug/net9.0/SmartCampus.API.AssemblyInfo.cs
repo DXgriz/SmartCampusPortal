@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SmartCampus.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ea82bf27fecfc132e5ba1bf36ffa0e092bf8a370")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ae9e58dfb0bb564b3a1a9b9b2bc2a555434c6e0e")]
 [assembly: System.Reflection.AssemblyProductAttribute("SmartCampus.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SmartCampus.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
