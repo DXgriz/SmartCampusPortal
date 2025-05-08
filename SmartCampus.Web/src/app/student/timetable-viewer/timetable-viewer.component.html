@@ -1,0 +1,29 @@
+<div class="timetable-container">
+    <h2>My Timetable</h2>
+    <div *ngIf="timetable.length === 0" class="no-timetable">
+      <p>You have no scheduled classes for this week.</p>
+    </div>
+    
+    <div *ngIf="timetable.length > 0" class="timetable">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Course</th>
+            <th>Time</th>
+            <th>Date</th>
+            <th>Location</th>
+            <th>Lecturer</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let classItem of timetable">
+            <td>{{ classItem.courseName }}</td>
+            <td>{{ classItem.time }}</td>
+            <td>{{ classItem.date | date:'shortDate' }}</td>
+            <td>{{ classItem.location }}</td>
+            <td>{{ classItem.lecturer }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
