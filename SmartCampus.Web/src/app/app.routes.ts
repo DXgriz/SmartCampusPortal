@@ -16,7 +16,7 @@ export const routes: Routes = [
   { path: 'auth/login', component: LoginComponent },
   { path: 'auth/register', component: RegisterComponent },
   { path: '', component: HomeComponent },
-
+  //#########################################################################################
   // Admin Routes
   {
     path: 'admin',
@@ -29,7 +29,13 @@ export const routes: Routes = [
     component: AdminDashboardComponent,
     canActivate: [AuthGuard]
   },
-
+  //admin dashboard
+  {
+    path: 'admin-dashboard',
+    component: AdminDashboardComponent,
+    canActivate: [AuthGuard]
+  },
+  //#########################################################################################
   // Student Routes
   {
     path: 'student',
@@ -42,7 +48,13 @@ export const routes: Routes = [
     component: StudentDashboardComponent,
     canActivate: [AuthGuard]
   },
-
+  //student dashboard
+  {
+    path: 'student-dashboard',
+    component: StudentDashboardComponent,
+    canActivate: [AuthGuard]
+  },
+  //#########################################################################################
   // Teacher Routes
   {
     path: 'teacher',
@@ -55,10 +67,26 @@ export const routes: Routes = [
     component: TeacherDashboardComponent,
     canActivate: [AuthGuard]
   },
+  //teacher dashboard
+  {
+    path: 'lecturer-dashboard',
+    component: TeacherDashboardComponent,
+    canActivate: [AuthGuard]
+  },
+
+
   //Timetable
-  { path: 'student/timetable', 
-    component: TimetableViewerComponent, 
-    canActivate: [AuthGuard] },
+  {
+    path: 'student/timetable',
+    component: TimetableViewerComponent,
+    canActivate: [AuthGuard]
+  },
+  
+//Bookings
+{
+  path: 'bookings',
+  loadComponent: () => import('./features/booking/booking.component').then(m => m.BookingComponent)
+},
 
   // Wildcard fallback route
   { path: '**', redirectTo: '' }

@@ -1,2 +1,19 @@
-<h2>Student Dashboard</h2>
-<p>View your class timetable, book services, and report campus issues here.</p>
+<h2>Welcome, {{ studentName }}</h2>
+
+<section>
+  <h3>Upcoming Classes</h3>
+  <ul>
+    <li *ngFor="let cls of upcomingClasses">
+      {{ cls.subject }} at {{ cls.time }}
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h3>Bookings</h3>
+  <ul>
+    <li *ngFor="let booking of bookings">
+      {{ booking.service }} on {{ booking.date }}
+    </li>
+  </ul>
+</section>

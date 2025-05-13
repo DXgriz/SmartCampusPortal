@@ -13,6 +13,8 @@ import { CommonModule } from '@angular/common';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
+
 export class LoginComponent {
   loginForm: FormGroup;
   errorMessage: string = '';
@@ -46,16 +48,16 @@ export class LoginComponent {
 
         // Decode token or use role info from backend response
         const role = res.role?.toLowerCase();
+        //const role = this.authService.getUserRole();
 
-        // Redirect based on role
         if (role === 'admin') {
-          this.router.navigate(['/dashboard/admin']);
+          this.router.navigate(['/admin-dashboard']);
         } else if (role === 'student') {
-          this.router.navigate(['/dashboard/student']);
+          this.router.navigate(['/student-dashboard']);
         } else if (role === 'teacher') {
-          this.router.navigate(['/dashboard/teacher']);
+          this.router.navigate(['/teacher-dashboard']);
         } else {
-          this.router.navigate(['/']);
+          this.router.navigate(['/']);  //fallback
         }
       },
       error: (err) => {

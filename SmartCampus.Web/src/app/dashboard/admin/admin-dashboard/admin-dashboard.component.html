@@ -1,2 +1,10 @@
 <h2>Admin Dashboard</h2>
-<p>Manage users, services, analytics, and system-wide notifications here.</p>
+
+<section>
+  <h3>System Statistics</h3>
+  <ul>
+    <li>Total Users: {{ stats.users }}</li>
+    <li>Bookings This Month: {{ stats.bookings }}</li>
+    <li>Open Issues: {{ stats.openIssues }}</li>
+  </ul>
+</section>

@@ -1,2 +1,19 @@
-<h2>Teacher Dashboard</h2>
-<p>Manage class schedules, view room bookings, and handle student reports here.</p>
+<h2>Welcome, {{ teacherName }}</h2>
+
+<section>
+  <h3>Today’s Classes</h3>
+  <ul>
+    <li *ngFor="let classItem of classesToday">
+      {{ classItem }}
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h3>Reported Issues</h3>
+  <ul>
+    <li *ngFor="let issue of reportedIssues">
+      {{ issue.title }} ({{ issue.date }})
+    </li>
+  </ul>
+</section>

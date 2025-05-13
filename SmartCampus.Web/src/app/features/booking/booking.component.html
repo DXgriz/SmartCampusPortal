@@ -1,0 +1,6 @@
+<h2>Bookings</h2>
+<ul>
+  <li *ngFor="let booking of bookings">
+    {{ booking.userId }} - {{ booking.serviceId }} - {{ booking.bookingDate }} - {{ booking.status }}
+  </li>
+</ul>
