@@ -5,7 +5,7 @@ using SmartCampus.API.Models;
 
 namespace SmartCampus.API.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, int>
+    public class ApplicationDbContext : IdentityDbContext<User, UserRole, int>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -18,38 +18,42 @@ namespace SmartCampus.API.Data
         public DbSet<Issue> Issues { get; set; }
         public DbSet<Announcement> Announcements { get; set; }
         public DbSet<Notification> Notifications { get; set; }
-        new public DbSet<UserRole> UserRoles { get; set; }
-        //override public DbSet<IdentityUserRole<int>> UserRoles { get; set; }
+
+        // DO NOT redefine UserRoles manually
+        // public DbSet<UserRole> UserRoles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<UserRole>().ToTable("UserRole", "dbo");
+            // Prevent multiple cascade paths
+            builder.Entity<IdentityUserRole<int>>()
+                .HasOne<User>() 
+                .WithMany()
+                .HasForeignKey(ur => ur.UserId)
+                .OnDelete(DeleteBehavior.Restrict); // Prevent cascade delete
 
-            // Seed Roles (Important for setting up roles)
+            builder.Entity<IdentityUserRole<int>>()
+                .HasOne<UserRole>() 
+                .WithMany()
+                .HasForeignKey(ur => ur.RoleId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Use Identity's standard AspNetRoles table  
+            builder.Entity<UserRole>().ToTable("AspNetRoles");
+
             builder.Entity<UserRole>().HasData(
-                new UserRole { RoleId = 1, RoleName = "Student" },
-                new UserRole { RoleId = 2, RoleName = "Lecturer" },
-                new UserRole { RoleId = 3, RoleName = "Administrator" }
+                new UserRole { Id = 1, Name = "Student", NormalizedName = "STUDENT", RoleName = "Student" },
+                new UserRole { Id = 2, Name = "Lecturer", NormalizedName = "LECTURER", RoleName = "Lecturer" },
+                new UserRole { Id = 3, Name = "Administrator", NormalizedName = "ADMINISTRATOR", RoleName = "Administrator" }
             );
 
-            // Configure the relationship between Timetable and Users
             builder.Entity<Timetable>()
                 .HasOne(t => t.Lecturer)
                 .WithMany()
                 .HasForeignKey(t => t.LecturerId)
-                .OnDelete(DeleteBehavior.Restrict); // Prevent cascading deletes
-
-            // Define the many-to-many relationship between Timetable and Student.
-            //  This is now handled through the StudentIds property in the Timetable model.
-            // builder.Entity<Timetable>()
-            //     .HasMany(t => t.Students)
-            //     .WithMany()
-            //     .UsingEntity(j => j.ToTable("TimetableStudent"));  // You don't need this join table
-
-            //Set Schema
-            //builder.HasDefaultSchema("SmartCampus");
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
+
 }

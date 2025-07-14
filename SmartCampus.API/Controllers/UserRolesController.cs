@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SmartCampus.API.Data;
 using SmartCampus.API.Models;
@@ -19,7 +20,8 @@ namespace SmartCampus.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UserRole>>> GetUserRoles()
         {
-            return await _context.UserRoles.ToListAsync();
+            var roles = await _context.Roles.ToListAsync(); // Fetch roles from the correct DbSet
+            return Ok(roles); // Return the roles as an ActionResult
         }
 
         [HttpGet("{id}")]
@@ -27,14 +29,31 @@ namespace SmartCampus.API.Controllers
         {
             var role = await _context.UserRoles.FindAsync(id);
             if (role == null) return NotFound();
-            return role;
+
+            // Map IdentityUserRole<int> to UserRole
+            var userRole = new UserRole
+            {
+                //UserId = role.UserId,
+                RoleId = role.RoleId,
+                RoleName = "DefaultRoleName" // Provide a default value for the required RoleName property
+            };
+
+            return userRole;
         }
 
         [HttpPost]
         public async Task<ActionResult<UserRole>> PostUserRole(UserRole role)
         {
-            _context.UserRoles.Add(role);
+            // Map UserRole to IdentityUserRole<int>
+            var identityUserRole = new IdentityUserRole<int>
+            {
+                UserId = 0, // Replace with the actual UserId
+                RoleId = role.RoleId
+            };
+
+            _context.UserRoles.Add(identityUserRole);
             await _context.SaveChangesAsync();
+
             return CreatedAtAction(nameof(GetUserRole), new { id = role.RoleId }, role);
         }
 

@@ -84,13 +84,20 @@ namespace SmartCampus.API.Controllers
 
         private string GenerateJwtToken(User user)
         {
-            var claims = new[]
-            {
-                new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.Name, user.Name),
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Role, user.Role?.RoleName ?? "Unknown")
-            };
+            var claims = new List<Claim>();
+
+            if (!string.IsNullOrEmpty(user.Email))
+                claims.Add(new Claim(ClaimTypes.Email, user.Email));
+
+            if (!string.IsNullOrEmpty(user.Name))
+                claims.Add(new Claim(ClaimTypes.Name, user.Name));
+
+            claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()));
+
+            if (!string.IsNullOrEmpty(user.Role?.RoleName))
+                claims.Add(new Claim(ClaimTypes.Role, user.Role.RoleName));
+            else
+                claims.Add(new Claim(ClaimTypes.Role, "Unknown"));
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]!));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);

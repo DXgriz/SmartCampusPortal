@@ -7,10 +7,10 @@ using Microsoft.AspNetCore.Identity;
 namespace SmartCampus.API.Models
 {
 
-    public class UserRole
+    public class UserRole : IdentityRole<int>
     {
         [Key]
         public int RoleId { get; set; }
-        public string RoleName { get; set; }
+        public required string RoleName { get; set; }
     }
 }

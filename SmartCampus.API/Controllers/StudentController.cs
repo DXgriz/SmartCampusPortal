@@ -56,3 +56,4 @@ namespace SmartCampus.API.Controllers
             return Ok(notifications);
         }
     }
+}

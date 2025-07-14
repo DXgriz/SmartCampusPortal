@@ -1,5 +1,62 @@
 [
   {
+    "ContainingType": "SmartCampus.API.Controllers.AdminController",
+    "Method": "GetAllUsers",
+    "RelativePath": "api/Admin/all-users",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartCampus.API.Controllers.AdminController",
+    "Method": "CreateAnnouncement",
+    "RelativePath": "api/Admin/create-announcement",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "announcement",
+        "Type": "SmartCampus.API.Models.Announcement",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartCampus.API.Controllers.AdminController",
+    "Method": "GetAnalytics",
+    "RelativePath": "api/Admin/dashboard-analytics",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartCampus.API.Controllers.AdminController",
+    "Method": "UpdateService",
+    "RelativePath": "api/Admin/update-service/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "updatedService",
+        "Type": "SmartCampus.API.Models.Service",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "SmartCampus.API.Controllers.AnnouncementsController",
     "Method": "GetAnnouncements",
     "RelativePath": "api/Announcements",
@@ -212,6 +269,48 @@
       {
         "Name": "id",
         "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartCampus.API.Controllers.HomeController",
+    "Method": "Dashboard",
+    "RelativePath": "api/Home/dashboard",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartCampus.API.Controllers.HomeController",
+    "Method": "Login",
+    "RelativePath": "api/Home/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "SmartCampus.API.Models.Login",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartCampus.API.Controllers.HomeController",
+    "Method": "Register",
+    "RelativePath": "api/Home/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "SmartCampus.API.Models.Register",
         "IsRequired": true
       }
     ],
@@ -538,6 +637,102 @@
     "Parameters": [
       {
         "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartCampus.API.Controllers.StudentController",
+    "Method": "BookService",
+    "RelativePath": "api/Student/book-service",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "booking",
+        "Type": "SmartCampus.API.Models.Booking",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartCampus.API.Controllers.StudentController",
+    "Method": "GetNotifications",
+    "RelativePath": "api/Student/notifications/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartCampus.API.Controllers.StudentController",
+    "Method": "ReportIssue",
+    "RelativePath": "api/Student/report-issue",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "issue",
+        "Type": "SmartCampus.API.Models.Issue",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartCampus.API.Controllers.StudentController",
+    "Method": "GetTimetable",
+    "RelativePath": "api/Student/timetable/{studentId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartCampus.API.Controllers.TeacherController",
+    "Method": "GetAssignedIssues",
+    "RelativePath": "api/Teacher/assigned-issues/{lecturerId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "lecturerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartCampus.API.Controllers.TeacherController",
+    "Method": "GetMyTimetable",
+    "RelativePath": "api/Teacher/timetable/{lecturerId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "lecturerId",
         "Type": "System.Int32",
         "IsRequired": true
       }

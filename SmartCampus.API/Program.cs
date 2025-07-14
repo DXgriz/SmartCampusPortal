@@ -52,7 +52,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
     {
-        policy.WithOrigins("http://localhost:4200") // Replace with your Angular app URL
+        policy.WithOrigins("http://localhost:4200")
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
@@ -133,7 +133,7 @@ if (app.Environment.IsDevelopment())
     }
 
 
-app.UseHttpsRedirection();
+    app.UseHttpsRedirection();
     app.UseStaticFiles();
 
     app.UseRouting();
@@ -144,5 +144,12 @@ app.UseHttpsRedirection();
     app.UseAuthorization();
 
     app.MapControllers();
+
+    app.MapGet("/", context =>
+    {
+        context.Response.Redirect("/swagger");
+        return Task.CompletedTask;
+    });
+
 
     app.Run();
